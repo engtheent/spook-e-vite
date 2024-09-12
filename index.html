@@ -84,7 +84,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            background-image: url('file:///C:/Users/mclaughll1/OneDrive%20-%20Leidos-LeidosCorpUS/Documents/invite/table.jpg');
+            background-image: url('./table.jpg');
 	    background-repeat: no-repeat;
 	    background-size: contain;
 	    background-position: center;
@@ -274,7 +274,7 @@ p.fancyfont {
         <p class='fancyfont' style='margin-top: 0': left'>Please join us for a supper of mystery and magnificence under the moonlit canopy of the old oak tree.</p>
         <p class='fancyfont' style='text-align: left'>Date: September 28th</p>
         <p class='fancyfont'style='text-align: left'>Time: 7:00 pm</p>
-        <p class='fancyfont'style='text-align: left'>Location: 171 Silverwood Ln</p>
+        <p class='fancyfont' id="location" style='text-align: left'>Location: Sender's Abode</p>
 	<p class='fancyfont'style='text-align: left'>Attire: Formal</p>
 
      </div>
@@ -285,8 +285,10 @@ p.fancyfont {
     <script>
 
 	const urlParams = new URLSearchParams(window.location.search);
-        const myName = urlParams.get('name');
+    const myName = urlParams.get('name');
+    const myPlace = urlParams.get('place');
 	const addressedTo = document.getElementById('recipient');
+    const location = document.getElementById('location')
 
         if (myName) {
             addressedTo.textContent = 'Hello '+myName;
@@ -295,12 +297,16 @@ p.fancyfont {
 	   addressedTo.textContent = 'Open';
 	}
 
+    if (myPlace) {
+        location.textContent = "Location: "+myPlace.split('_').join(' ');
+    }
+
         document.getElementById('envelope').addEventListener('click', function() {
 	    document.getElementById('envelope').classList.remove('wiggle');
 	    document.getElementById('envelope').classList.add('open');
             document.getElementById('invitation').classList.remove('hidden');
             document.getElementById('table').classList.remove('hidden');
-	    const audio = new Audio('file:///C:/Users/mclaughll1/OneDrive%20-%20Leidos-LeidosCorpUS/Desktop/piano.mp3');
+	    const audio = new Audio('./piano.mp3');
             audio.loop = true;
             audio.play();
         });
