@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Party Invitation</title>
+    <style>
+        body {
+            margin: 0;
+	    display: flex;
+            background: radial-gradient(#e66465, #9198e5);
+            font-family: 'Arial', sans-serif;
+        }
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background: #5e16db;
+            border-radius: 10px;
+            border-style: solid;
+            border-color: #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 1s;
+	    z-index: 4;
+        }
+        .envelope.open {
+            transform: translate(-50%, -50%) rotateX(90deg);
+        }
+        .envelope::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 100px solid #3e1e75;
+            top: 0;
+            left: 0;
+            transform: rotate(180deg);
+        }
+        .envelope.open::before {
+            transform: translateY(0) rotateX(-90deg);
+        }
+        .button {
+            margin-top: 80px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+             font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        .invitation {
+	    width: 300px;
+   	    height: 450px;
+            text-align: center;
+            color: white;
+	    background-color: rgba(33, 33, 33, 0.9);
+            position: absolute;
+	    border-radius: 25px;
+	    
+            top: 0;
+            left: 0;
+	    bototm: 0;
+	    right:0;
+            margin: auto;
+            z-index: 3;
+            font-size: 27px;
+	    padding: 30px;
+	    margin-top: 50px;
+        }
+        .background {
+	    position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: url('file:///C:/Users/mclaughll1/OneDrive%20-%20Leidos-LeidosCorpUS/Documents/invite/table.jpg');
+	    background-repeat: no-repeat;
+	    background-size: contain;
+	    background-position: center;
+            z-index: 3;
+            overflow: hidden;
+	    filter:blur(4px);
+	}
+	.ghost, .candle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('https://www.example.com/ghost.png') no-repeat center center;
+            background-size: cover;
+            animation: bob 3s infinite;
+        }
+
+	.bob{
+	animation: bob 5s infinite ease-in;
+	}	
+        .candle {
+            background: url('https://www.example.com/candle.png') no-repeat center center;
+        }
+        .ghost:nth-child(1) { left: 10%; top: 20%; }
+        .ghost:nth-child(2) { right: 10%; top: 30%; }
+        .candle:nth-child(3) { left: 30%; top: 50%; }
+        .candle:nth-child(4) { right: 20%; top: 70%; }
+
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+	@keyframes wiggle {
+   	 0% { transform: rotate(0deg);}
+  	 90% { transform: rotate(0deg); }
+  	 93% { transform: rotate(5deg); }
+   	96% { transform: rotate(-5deg); }
+  	100% { transform: rotate(0deg); }
+	}
+
+	.wiggle {
+	transform: translate(-50%, -50%);
+    	animation: wiggle 3.5s infinite;
+	}
+
+
+        .lightning {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: none;
+            z-index: 2;
+        }
+        .thankyou {
+            display: none;
+            text-align: center;
+            color: white;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+        }
+
+
+        
+@keyframes move-background {
+  from {
+		-webkit-transform: translate3d(0px, 0px, 0px);
+	}
+	to { 
+		-webkit-transform: translate3d(1000px, 0px, 0px);
+	}
+}
+@-webkit-keyframes move-background {
+  from {
+		-webkit-transform: translate3d(0px, 0px, 0px);
+	}
+	to { 
+		-webkit-transform: translate3d(1000px, 0px, 0px);
+	}
+}
+
+@-moz-keyframes move-background {    
+	from {
+		-webkit-transform: translate3d(0px, 0px, 0px);
+	}
+	to { 
+		-webkit-transform: translate3d(1000px, 0px, 0px);
+	}
+}
+
+    @-webkit-keyframes move-background {
+	from {
+		-webkit-transform: translate3d(0px, 0px, 0px);
+	}
+	to { 
+		-webkit-transform: translate3d(1000px, 0px, 0px);
+	}
+}
+
+.background-container{
+	position: fixed;
+	top: 0;
+	left:0;
+	bottom: 0;
+	right: 0;
+}
+
+.stars {
+ background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+ position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: block;
+  	z-index: 0;
+}
+
+.twinkling{
+	width:10000px;
+	height: 100%;
+	background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") repeat;
+	background-size: 1000px 1000px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    
+    -moz-animation:move-background 40s linear infinite;
+  -ms-animation:move-background 40s linear infinite;
+  -o-animation:move-background 40s linear infinite;
+  -webkit-animation:move-background 40s linear infinite;
+  animation:move-background 40s linear infinite;
+	
+}
+
+@font-face {
+    font-family: "My Custom Font";
+    src: url('file:///C:/Users/mclaughll1/OneDrive%20-%20Leidos-LeidosCorpUS/Documents/invite/font.ttf') format("truetype");
+}
+p.fancyfont { 
+    font-family: "My Custom Font", Verdana, Tahoma;
+    padding: 5px;
+    margin: 5px;
+}
+
+.name{
+	    
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 1s;
+	    z-index: 5;
+	    font-size: 40px;
+	    color: white;
+
+}
+
+
+
+
+    </style>
+
+
+
+
+
+
+</head>
+<body>
+  <div id='oldbg'>
+    <div class="background-container"></div>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+</div>
+    <div id="table" class="background hidden"></div>
+    <div class="wiggle envelope" id="envelope">
+       <p id="recipient" class="fancyfont name" > </p>
+    </div>
+    <div class="invitation hidden bob" id="invitation">
+	<p class='fancyfont'> Esteemed guest, you are </p>
+        <p class='fancyfont' style="font-size: 60px" >Cordially Invited</p>
+        <p class='fancyfont' style='margin-top: 0': left'>Please join us for a supper of mystery and magnificence under the moonlit canopy of the old oak tree.</p>
+        <p class='fancyfont' style='text-align: left'>Date: September 28th</p>
+        <p class='fancyfont'style='text-align: left'>Time: 7:00 pm</p>
+        <p class='fancyfont'style='text-align: left'>Location: 171 Silverwood Ln</p>
+	<p class='fancyfont'style='text-align: left'>Attire: Formal</p>
+
+     </div>
+
+
+
+
+    <script>
+
+	const urlParams = new URLSearchParams(window.location.search);
+        const myName = urlParams.get('name');
+	const addressedTo = document.getElementById('recipient');
+
+        if (myName) {
+            addressedTo.textContent = 'Hello '+myName;
+        }
+	else {
+	   addressedTo.textContent = 'Open';
+	}
+
+        document.getElementById('envelope').addEventListener('click', function() {
+	    document.getElementById('envelope').classList.remove('wiggle');
+	    document.getElementById('envelope').classList.add('open');
+            document.getElementById('invitation').classList.remove('hidden');
+            document.getElementById('table').classList.remove('hidden');
+	    const audio = new Audio('file:///C:/Users/mclaughll1/OneDrive%20-%20Leidos-LeidosCorpUS/Desktop/piano.mp3');
+            audio.loop = true;
+            audio.play();
+        });
+
+     </script>
+</body>
+</html>
