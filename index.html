@@ -66,6 +66,7 @@
         
         .hidden {
             visibility: hidden;
+            display: none;
         }
         .invitation {
            opacity: 0;
@@ -74,7 +75,7 @@
            height: auto;
            text-align: center;
            color: white;
-           background-color: rgba(33, 33, 33, 0.5);
+           background-color: rgba(255, 255, 255, 0.2);
            position: absolute;
            border-radius: 25px;
 
@@ -220,6 +221,9 @@
         font-family: "My Custom Font", Verdana, Tahoma;
         padding: 5px;
         margin: 5px;
+        margin-bottom: -0.3em;
+        letter-spacing: .08rem;
+        text-shadow: 1px 1px 1px black;
     }
 
     .center{
@@ -241,7 +245,43 @@
 
     }
 
+    .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+    }
 
+    .button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: 0;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.0);
+        transition: all 0.3s ease;
+        font-family: "My Custom Font", Verdana, Tahoma;
+        font-size: 30px;
+        margin-bottom: -0.5em;
+        letter-spacing: .08rem;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .text-display {
+        margin-top: 20px;
+        font-size: 18px;
+        text-align: center;
+        font-family: "My Custom Font", Verdana, Tahoma;
+        font-size: 30px;
+        margin-bottom: -0.3em;
+        letter-spacing: .08rem;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .enlarged {
+        font-size: 40px;
+        transform: translateY(-10px);
+    }
 
 
     </style>
@@ -263,14 +303,42 @@
     </div>
 </div>
 
-<div class="invitation hidden bob" id="invitation">
+<div class="invitation hidden bob" style="min-height: 75%;" id="invitation">
 	<p class='fancyfont'> Esteemed guest, you are </p>
     <p class='fancyfont' style="font-size: 60px" >Cordially Invited</p>
-    <p class='fancyfont' style='margin-top: 0'>Please join us for a supper of mystery and magnificence under the moonlit canopy of the old oak tree.</p>
-    <p class='fancyfont' style='text-align: left'>Date: September 28th</p>
-    <p class='fancyfont'style='text-align: left'>Time: 7:00 pm</p>
-    <p class='fancyfont' id="location" style='text-align: left'>Location: Sender's Abode</p>
-    <p class='fancyfont'style='text-align: left'>Attire: Formal</p>
+    <p class='fancyfont' style='margin-top: 0; ont-size: 40px;'>to attend Lee & Terra's outdoor dinner party for an evening of decadence and mystery.</p>
+    <br>
+    <div class="button-container">
+        <button class="button" onclick="changeText('Menu')">Menu</button>
+        <button class="button enlarged" onclick="changeText('Details')">Details</button>
+        <button class="button" onclick="changeText('Activities')">Activities</button>
+    </div>
+    <hr style="padding: 0; margin: 0;">
+
+    <div class="text-display" id="Details">
+        <p class='fancyfont' style='text-align: left'>Date: October 5th</p>
+        <p class='fancyfont'style='text-align: left'>Time: 7:00 pm</p>
+        <p class='fancyfont' id="location" style='text-align: left'>Location: Sender's Residence</p>
+        <p class='fancyfont'style='text-align: left'>Attire: Smart</p>   
+    </div>
+
+    <div class="text-display hidden" id="Menu">
+        <p class='fancyfont' style='text-align: left'>Appetizer: Charcuterie & Tea</p>
+        <p class='fancyfont' style='text-align: left'>Entree: Chili & Potatoe Soup</p>
+        <p class='fancyfont' style='text-align: left'>Desert: Pumpkin Creme Brulee</p>
+        <p class='fancyfont' style='text-align: left'>Cafe: Coffee, Cider, & Hot Chocolate</p>   
+    </div>
+
+    <div class="text-display hidden" id="Activities">
+        <p class='fancyfont' style='text-align: left'>Checkers & Tic Tac Toe</p>
+        <p class='fancyfont' style='text-align: left'>Scavenger Hunt</p>
+        <p class='fancyfont' style='text-align: left'>Corn Hole</p>
+        <p class='fancyfont' style='text-align: left'>Wink Wink Murder</p>
+        <p class='fancyfont' style='text-align: left'>Tea, Dinner, & Coffee</p>
+        <p class='fancyfont' style='text-align: left'>Campfire </p>
+    </div>
+
+
 
 </div>
 
@@ -311,6 +379,38 @@
     audio.loop = false;
     audio.play();
    });
+
+
+
+    function changeText(selectedButton) {
+        const buttons = document.querySelectorAll('.button');
+        const textDisplay = document.getElementById('textDisplay');
+        const divs = document.querySelectorAll('.text-display');
+
+        divs.forEach(div => { div.classList.add('hidden')})
+      
+        buttons.forEach(button => {
+            button.classList.remove('enlarged');
+        });
+
+        const activeButton = Array.from(buttons).find(button => button.textContent === selectedButton);
+        
+        activeButton.classList.add('enlarged');
+        
+        // Change the display text based on the button clicked
+        switch (selectedButton) {
+            case 'Menu':
+                document.getElementById('Menu').classList.remove('hidden');
+                break;
+            case 'Activities':
+                document.getElementById('Activities').classList.remove('hidden');
+                break;
+            default:
+                document.getElementById('Details').classList.remove('hidden');
+                break;
+        }
+    }
+
 
 </script>
 </body>
