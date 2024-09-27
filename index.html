@@ -111,13 +111,13 @@
 
 
     .bob{
-       animation: bob 5s infinite ease-in;
+       animation: bob 5s infinite ease-in-out;
     }	
    
 
     @keyframes bob {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+        0%, 100% { transform: translateY(-5px); }
+        50% { transform: translateY(-12px); }
     }
 
     @keyframes blowup {
@@ -314,7 +314,7 @@
     <br>
     <div class="button-container">
         <button class="button" onclick="changeText('Menu')">Menu</button>
-        <button class="button enlarged" onclick="changeText('Details')">Details</button>
+        <button class="button enlarged bob" onclick="changeText('Details')">Details</button>
         <button class="button" onclick="changeText('Activities')">Activities</button>
     </div>
     <hr style="margin-top: 20px;">
@@ -395,11 +395,13 @@
       
         buttons.forEach(button => {
             button.classList.remove('enlarged');
+            button.classList.remove('bob')
         });
 
         const activeButton = Array.from(buttons).find(button => button.textContent === selectedButton);
         
         activeButton.classList.add('enlarged');
+        activeButton.classList.add('bob');
         
         // Change the display text based on the button clicked
         switch (selectedButton) {
